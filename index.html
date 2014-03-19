@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Backbone.js • TodoMVC</title>
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+<section id="todoapp">
+  <header id="header" class="todo-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Todo <small>backbone.js</small></h1>
+          <input id="new-todo" class="form-control" placeholder="What needs to be done?" autofocus>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div id="navstats"></div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <section id="main">
+          <input id="toggle-all" type="checkbox">
+          <label for="toggle-all">Mark all as complete</label>
+          <ul id="todo-list"></ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="info">
+        <h3>Double-click to edit a todo</h3>
+
+        <p>Broken apart, re-styled using Bootstrap and re-assembled by <a href="https://github.com/mikecarretta">me</a>; trying to understand how to create a backbone.js app.</p>
+
+        <p>The backbone.js todo app is written by <a href="https://github.com/addyosmani">Addy Osmani</a>, and part of <a href="http://todomvc.com">TodoMVC</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #item-template which will be used to display individual todo items -->
+  <script type="text/template" id="item-template">
+    <div class="view">
+      <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+      <label><%= title %></label>
+      <button type="button" class="destroy close" aria-hidden="true">&times;</button>
+    </div>
+    <input class="edit" value="<%= title %>">
+  </script>
+
+<!-- #stats-template template which we will use to populate the nav -->
+  <script type="text/template" id="stats-template">
+    <ul id="filters" class="nav navbar-nav">
+      <li>
+        <a class="active" href="#/">All</a>
+      </li>
+      <li>
+        <a href="#/active">Active</a>
+      </li>
+      <li>
+        <a href="#/completed">Completed</a>
+      </li>
+    </ul>
+    <div class="navbar-right">
+      <p id="todo-count" class="navbar-text"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</p>
+      <% if (completed) { %>
+      <button id="clear-completed" class="btn btn-default navbar-btn" type="button">Clear completed (<%= completed %>)</button>
+      <% } %>
+    </div>
+
+  </script>
+
+  <script src="js/lib/jquery.min.js"></script>
+  <script src="js/lib/underscore-min.js"></script>
+  <script src="js/lib/backbone-min.js"></script>
+  <script src="js/lib/backbone.localStorage.js"></script>
+
+  <script src="js/models/todo.js"></script>
+  <script src="js/collections/todos.js"></script>
+  <script src="js/views/todos.js"></script>
+  <script src="js/views/app.js"></script>
+  <script src="js/routers/router.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
